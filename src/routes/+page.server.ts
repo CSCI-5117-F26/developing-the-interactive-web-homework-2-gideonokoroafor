@@ -7,7 +7,7 @@ export const load: PageServerLoad = async ({ request }) => {
         headers: request.headers
     })
     if(session) {
-        redirect(302, '/todo')
+        redirect(302, '/todos')
     } else {
         redirect(302, '/signin')
     }

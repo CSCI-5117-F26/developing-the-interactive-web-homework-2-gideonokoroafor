@@ -16,7 +16,7 @@
             { email, password },
             {
             onSuccess: () => {
-                goto("/todo");
+                goto("/todos");
             },
             onError: (ctx) => {
                 errorMsg = ctx.error.message;
