@@ -1,7 +1,6 @@
-import { redirect } from "@sveltejs/kit";
+import { redirect, fail } from "@sveltejs/kit";
 import type { PageServerLoad, Actions } from "./$types";
 import { auth } from "#lib/server/auth.ts";
-import { fail } from "@sveltejs/kit";
 import { db } from "#lib/mongo.server.ts";
 import { ObjectId } from "mongodb";
 
@@ -58,6 +57,10 @@ export const actions: Actions = {
         }
         const data = await request.formData();
         const taskId = data.get('id')?.toString();
+
+        if(!taskId || !ObjectId.isValid(taskId)){
+            return fail(401, {error: 'User not found'})
+        }
 
         const result = await db.collection('todos').updateOne({
             _id: new ObjectId(taskId),

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { authClient } from "#lib/auth-client.ts";
+	import { resolve } from "$app/paths";
 
     const session = authClient.useSession()
     let { data } = $props()
@@ -18,5 +19,7 @@
             <!-- <a href={`/todo/${todo.id}`}>{todo.text}</a> -->
         </form>
     {/each}
+
+    <a href={resolve('/')}>Home</a>
 
 {/if}

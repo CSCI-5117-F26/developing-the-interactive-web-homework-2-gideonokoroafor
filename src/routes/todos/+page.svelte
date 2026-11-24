@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { authClient } from "#lib/auth-client.ts";
 	import { goto } from "$app/navigation";
+	import { resolve } from "$app/paths";
 
     const session = authClient.useSession()
     let { data } = $props()
@@ -40,13 +41,14 @@
                     }
                 }}
             />
-            <span>{todo.text}</span>
-            <!-- <a href={`/todo/${todo.id}`}>{todo.text}</a> -->
+            <!-- <span>{todo.text}</span> -->
+            <a href={`/todo/${todo.id}`}>{todo.text}</a>
         </form>
     {/each}
 
     <p></p>
-    <button onclick={()=>goto('/done')} type="submit"> Completed Tasks</button>
+    <!-- <button onclick={()=>goto('/done')} type="submit"> Completed Tasks</button> -->
+    <a href={resolve('/done')}>Completed Tasks</a>
 
     <p></p>
     <button onclick={handleLogout} type="submit"> Sign out</button>
